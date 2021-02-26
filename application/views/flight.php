@@ -56,9 +56,17 @@
 				DESTINATION TIME:</td><td><input type="time" name="destime">
 					</td></tr>
 			<tr><td>	
-				TOTAL SEATS:</td><td><input type="text" name="tseat" required></td></tr>
+				BUSSINESS CLASS TOTAL SEATS:</td><td><input type="text" name="btseat" required></td></tr>
+				<tr><td>	
+				FIRST CLASS TOTAL SEATS:</td><td><input type="text" name="ftseat" required></td></tr>
+				<tr><td>	
+				 ECONOMIC CLASS TOTAL SEATS:</td><td><input type="text" name="etseat" required></td></tr>
 			<tr><td>	
-				AVAILABLE  SEATS:</td><td><input type="text" name="aseat" required></td></tr>
+				 BUSSINESS CLASS AVAILABLE  SEATS:</td><td><input type="text" name="baseat" required></td></tr>
+				<tr><td>	
+				FIRST CLASS AVAILABLE  SEATS:</td><td><input type="text" name="faseat" required></td></tr>
+				<tr><td>	
+				ECONOMIC CLASS AVAILABLE  SEATS:</td><td><input type="text" name="easeat" required></td></tr>
 			
 			<tr><td>
 				AMOUNT:</td><td><input type="text" name="cost" placeholder="AMOUNT " required ></td></tr>

@@ -126,8 +126,12 @@ public function registrationForm()
 		$this->form_validation->set_rules("dest","destination",'required');
 	$this->form_validation->set_rules("desdate","destdate",'required');
 		$this->form_validation->set_rules("destime","desttime",'required');
-		$this->form_validation->set_rules("tseat","totalseat",'required');
-		$this->form_validation->set_rules("aseat","availseat",'required');
+		$this->form_validation->set_rules("btseat","btseat",'required');
+		$this->form_validation->set_rules("ftseat","ftseat",'required');
+		$this->form_validation->set_rules("etseat","etseat",'required');
+		$this->form_validation->set_rules("baseat","baseat",'required');
+		$this->form_validation->set_rules("faseat","faseat",'required');
+		$this->form_validation->set_rules("easeat","easeat",'required');
 		$this->form_validation->set_rules("cost","cost",'required');
 		if($this->form_validation->run())
 		{
@@ -141,8 +145,12 @@ public function registrationForm()
 					"destination"=>$this->input->post("dest"),
 					"dest_date"=>$this->input->post("desdate"),
 					"dest_time"=>$this->input->post("destime"),
-			"total_seats"=>$this->input->post("tseat"),
-			"avail_seat"=>$this->input->post("aseat"),
+			"btseats"=>$this->input->post("btseat"),
+			"ftseats"=>$this->input->post("ftseat"),
+			"etseats"=>$this->input->post("etseat"),
+			"baseat"=>$this->input->post("baseat"),
+			"faseat"=>$this->input->post("faseat"),
+			"easeat"=>$this->input->post("easeat"),
 			"	cost"=>$this->input->post("cost"));
 		$this->mainmodel->regis($reg);
 		redirect(base_url().'first/flight');
@@ -160,6 +168,68 @@ public function registrationForm()
 		
 		$this->load->view('search');
 	}
+	public function flightclass()
+	{
+
+		$this->load->view('flightclass');
+	}
+	public function seat()
+	{
+
+		$this->load->view('seat');
+	}
+	public function airview()
+	{
+		$this->load->model('mainmodel');
+		$data['n']=$this->mainmodel->aview();
+		$this->load->view('airportview',$data);
+	}
+ public function searchf()
+    {
+        $this->load->view('search');
+    }
+    public function searchaction()
+    {
+        $this->load->model('mainmodel');
+        $d=date('y-m-d');
+        //$this->mainmodel->deletedate($d);
+        $dep=$this->input->post("dep");
+        $dest=$this->input->post("dest");
+        $depdate=$this->input->post("sdate");
+        $data['n']=$this->mainmodel->viewflight($dep,$dest,$depdate);
+        $this->load->view('fview',$data);
+
+    }
+    public function airport()
+	{
+		
+		$this->load->view('airport');
+	}
+    public function airportForm()
+	{
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules("aname","airportname",'required');
+		$this->form_validation->set_rules("abr","abbrevation",'required');
+		$this->form_validation->set_rules("city","city",'required');
+		$this->form_validation->set_rules("state","state",'required');
+		$this->form_validation->set_rules("zip","zip",'required');
+		$this->form_validation->set_rules("tzone","tzone",'required');
+
+		
+		if($this->form_validation->run())
+		{
+		$this->load->model('mainmodel');
+		$reg=array("airportname" => $this->input->post("aname"),
+					"abrv"=>$this->input->post("abr"),
+					"city"=>$this->input->post("city"),
+					"state"=>$this->input->post("state"),
+					"zipcode"=>$this->input->post("zip"),
+					"tzone"=>$this->input->post("tzone"));
+		$this->mainmodel->air($reg);
+		redirect(base_url().'first/airport');
+		}
+	}
+	
 
 
 }

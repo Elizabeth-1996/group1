@@ -47,6 +47,7 @@
 				PASSWORD:</td><td><input type="password" name="password" placeholder="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"></td></tr>
 				</table>
 				<input type="submit" name="submit" align="center">
+				<a href="<?php echo base_url();?>first/log">login</a>
 		
 	</form>
 </body>

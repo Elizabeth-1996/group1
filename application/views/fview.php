@@ -4,7 +4,7 @@
 	<title> FLIGHT VIEW</title>
 </head>
 <body>
-	<form method="post" action=" ">
+	<form method="get" action="<?php echo base_url();?>first/regist">
 	<table border="1">
 		<tr>
 			<th>FLIGHT ID</th>
@@ -16,12 +16,20 @@
 			<th>DESTINATION</th>
 			<th>DESTINATION DATE</th>
 			<th>DESTINATION TIME</th>
-			<th>TOTAL SEAT</th>
-			<th>AVAILABLE SEAT</th>
+			<th>TOTAL BUSSINESS SEATS</th>
+			<th>TOTAL FIRST CLASS SEATS</th>
+			<th>TOTAL ECONOMIC SEATS</th>
+			<th>TVAILABLE BUSSINESS SEATS</th>
+			<th>AVAILABLE  FIRST CLASS SEATS</th>
+			<th>AVAILABLE ECONOMIC SEATS</th>
 			<th>COST</th>
+			<th>CLICK</th>
+			
+
 			
 		</tr>
 	</thead>
+	
 		<?php 
 		if($n->num_rows()>0)
 		{
@@ -39,9 +47,17 @@
 					<td><?php echo $row->destination;?></td>
 					<td><?php echo $row->dest_date;?></td>
 					<td><?php echo $row->dest_time;?></td>
-					<td><?php echo $row->total_seats;?></td>
-					<td><?php echo $row->avail_seat;?></td>
+					<td><?php echo $row->btseats;?></td>
+					<td><?php echo $row->ftseats;?></td>
+					<td><?php echo $row->etseats;?></td>
+					<td><?php echo $row->baseat;?></td>
+					<td><?php echo $row->faseat;?></td>
+					<td><?php echo $row->easeat;?></td>
 					<td><?php echo $row->cost;?></td>
+					<input type="hidden" value="<?php echo $row->flid;?>">
+					<td><input type="submit" value="Register Now" ></td>
+
+
 				</tr>
 					<?php
 					/*if($row->status==1)

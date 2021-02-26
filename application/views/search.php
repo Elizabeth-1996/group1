@@ -20,10 +20,10 @@
 </style>
 <body>
 
-	<form method="post" action="<?php echo base_url()?>first/login">
+	<form method="post" action="<?php echo base_url()?>first/searchaction">
 		<center><table>
 			<tr><td>
-				DEPARTURE:</td><td><select name="dest">
+				DEPARTURE:</td><td><select name="dep">
 					<option>TRIVANDRUM</option> 
 					<option>KOCHI</option> 
 					<option>KOZHIKODE</option> 
@@ -42,10 +42,6 @@
 		<tr>
 				<td>DATE</td>
 		<td><input type="date" name="sdate" placeholder="DATE OF JOURNEY"></td>
-			</tr>
-			<tr>
-				<td>TIME</td>
-		<td><input type="time"name="stime" placeholder="TIME OF JOURNEY"></td>
 			</tr>
 		<tr>
 		<td><input type="submit" name="submit" value="ok"></td>

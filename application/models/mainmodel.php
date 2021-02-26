@@ -56,7 +56,35 @@ public function encpswd($pass)
 		$qry=$this->db->get("flightdetails");
 		return $qry;
 	}
+	/*public function deletedate($d)
+{
+$this->db->where('depdate<',$d);
+$this->db->delete("flightdetails");
+}
+*/
 
+public function viewflight($dep,$dest,$depdate)
+{
+$this->db->select('*');
+$this->db->where("departure",$dep);
+$this->db->where("destination",$dest);
+$this->db->where("dep_date",$depdate);
+$qry=$this->db->get("flightdetails");
+return $qry;
+}
+
+public function air($reg)
+	{
+
+		$this->db->insert("airport",$reg);
+		
+	}
+	public function aview()
+	{
+		$this->db->select('*');
+		$qry=$this->db->get("airport");
+		return $qry;
+	}
 
 }
 ?>
