@@ -86,5 +86,42 @@ public function air($reg)
 		return $qry;
 	}
 
+	public function detailsf($flid)
+	{
+		$this->db->select('*');
+		$this->db->where("flid",$flid);
+		$qry=$this->db->get("flightdetails");
+		return $qry;
+	}
+
+	public function detailsu($id)
+	{
+		$this->db->select('*');
+		$this->db->where("id",$id);
+		$qry=$this->db->get("register");
+		return $qry;
+	}
+
+//checkf()
+	public function checkf($flid)
+	{
+		$this->db->select('*');
+		$this->db->where("flid",$flid);
+		$qry=$this->db->get("flightdetails");
+		return $qry;
+	}
+
+public function checku($id)
+	{
+		$this->db->select('*');
+		$this->db->where("id",$id);
+		$qry=$this->db->get("register");
+		return $qry;
+	}
+
+
+
+
+
 }
 ?>

@@ -21,16 +21,32 @@ class first extends CI_Controller {
 	public function index()
 	{
 		echo "hello";
-		$this->load->view('new');
+		
 	}
 		public function regist()
-	{
-
+	{	
 		$this->load->view('reg_form');
 	}
 
-public function registrationForm()
+	public function idsave()
 	{
+		$flid=$this->uri->segment(3);
+		$this->load->library(array('session'));	
+		$newdata = array( 
+   'flid'  => $flid 
+);  
+
+	$this->session->set_userdata($newdata);
+	//$id=$_SESSION['flid'];
+	//echo $id;	
+	redirect(base_url().'first/regist');
+		
+
+	}
+
+public function registrationForm()
+	{	
+
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules("fname","firstname",'required');
 		$this->form_validation->set_rules("lname","lastname",'required');
@@ -91,7 +107,7 @@ public function registrationForm()
 			 			}
 		 			elseif($_SESSION['utype']=='1') 
 			 			{
-			 			 	redirect(base_url().'first/regist');
+			 			 	redirect(base_url().'first/formdetails');
 			 			 } 
 		 			}
 		 		else
@@ -110,6 +126,22 @@ public function registrationForm()
 
 		$this->load->view('home');
 	}
+
+
+	//viewing flight and user details
+	public function formdetails()
+	{
+		$id=$_SESSION['id'];
+		$flid=$_SESSION['flid'];
+		$this->load->model('mainmodel');
+		$data['n']=$this->mainmodel->detailsf($flid);
+		$data['m']=$this->mainmodel->detailsu($id);
+		$this->load->view('formdetails',$data);
+
+	}
+
+
+
 	public function flight()
 	{
 
@@ -229,6 +261,47 @@ public function registrationForm()
 		redirect(base_url().'first/airport');
 		}
 	}
+//ticket booking
+	public function ticketbook()
+	{	$id=$_SESSION['id'];
+		$flid=$_SESSION['flid'];
+		$this->load->model('mainmodel');
+		$data['n']=$this->mainmodel->detailsf($flid);
+		$data['m']=$this->mainmodel->detailsu($id);
+		$this->load->view('ticketbook',$data);
+		
+	} 
+
+	public function checking()
+	{	$id=$_SESSION['id'];
+		$flid=$_SESSION['flid'];
+		$this->load->model('mainmodel');
+		$data['n']=$this->mainmodel->checkf($flid);
+		$data['m']=$this->mainmodel->checku($id);
+		$this->load->view('checking',$data);
+		
+	}
+
+		//adding cost details
+
+	public function cost()
+	{	$id=$_SESSION['id'];
+		$flid=$_SESSION['flid'];
+		$this->load->model('mainmodel');
+		$data['n']=$this->mainmodel->checkf($flid);
+		$data['m']=$this->mainmodel->checku($id);
+
+	$data['o']=$this->input->post("seat");
+	$this->load->view('paymentdetails',$data);
+
+		
+	}
+
+
+
+
+
+
 	
 
 
